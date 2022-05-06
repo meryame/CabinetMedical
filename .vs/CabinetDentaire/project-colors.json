@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a289e401-6e74-41f7-bd8d-49b93899e01f": {
+      "ProjectGuid": "a289e401-6e74-41f7-bd8d-49b93899e01f",
+      "DisplayName": "CabinetDentaire.API",
+      "ColorIndex": 0
+    },
+    "a348efb2-1474-400e-955c-f4d3c3a66d3b": {
+      "ProjectGuid": "a348efb2-1474-400e-955c-f4d3c3a66d3b",
+      "DisplayName": "CabinetDentaire.DAL",
+      "ColorIndex": 1
+    },
+    "4efd8997-52dd-474a-826a-53e8e0bd78e4": {
+      "ProjectGuid": "4efd8997-52dd-474a-826a-53e8e0bd78e4",
+      "DisplayName": "CabinetDentaire.BLL",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

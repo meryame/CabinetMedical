@@ -1,0 +1,12 @@
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\bin\Debug\net6.0\CabinetDentaire.DAL.deps.json
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\bin\Debug\net6.0\CabinetDentaire.DAL.dll
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\bin\Debug\net6.0\ref\CabinetDentaire.DAL.dll
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\bin\Debug\net6.0\CabinetDentaire.DAL.pdb
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.csproj.AssemblyReference.cache
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.AssemblyInfoInputs.cache
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.AssemblyInfo.cs
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.csproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.dll
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\ref\CabinetDentaire.DAL.dll
+C:\Users\pc\source\repos\CabinetDentaire\CabinetDentaire.DAL\obj\Debug\net6.0\CabinetDentaire.DAL.pdb
