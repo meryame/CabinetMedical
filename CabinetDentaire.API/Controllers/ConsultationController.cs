@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CabinetDentaire.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class ConsultationController : ControllerBase
