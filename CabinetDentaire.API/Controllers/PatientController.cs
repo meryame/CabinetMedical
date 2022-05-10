@@ -54,7 +54,6 @@ namespace CabinetDentaire.API.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
         // POST api/<PatientController>
         [HttpPost]
         public async Task<IActionResult> Add(Patient patient)
@@ -68,21 +67,41 @@ namespace CabinetDentaire.API.Controllers
             }
             catch (Exception ex)
             {
-
+                throw new Exception(ex.Message);
+            }
+        }
+        // PUT api/<PatientController>/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Patient patient, Guid id)
+        {
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest("enter informations");
+                await _patientService.UpdatePatient(patient,id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
         }
 
-        // PUT api/<PatientController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
         // DELETE api/<PatientController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest("enter id patient please");
+                await _patientService.DeletePatient(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

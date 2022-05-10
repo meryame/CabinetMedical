@@ -12,5 +12,7 @@ namespace CabinetDentaire.BLL.Services
         public Task<IEnumerable<Dentiste>> GetAllDentiste();
         public Task UpdateCH(Dentiste dentiste, Guid id);
         public Task AddDentiste(Dentiste dentiste);
+        public Task<Dentiste> GetDentisteById(Guid id);
+        public Task DeleteDentiste(Guid id);
     }
 }

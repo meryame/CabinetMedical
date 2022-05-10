@@ -46,6 +46,17 @@ namespace CabinetDentaire.BLL.Services
             }
         }
 
+        public async Task DeleteRendezVous(Guid id)
+        {
+            var commandText = "delete from rendezvous where rendezvousid = @RendezVousID";
+            var parameters = new DynamicParameters();
+            parameters.Add("RendezVousID", id, DbType.Guid);
+            using (var connection = _dbContext.Connection())
+            {
+                await connection.QueryFirstOrDefaultAsync<RendezVous>(commandText, parameters);
+            }
+        }
+
         public async Task<IEnumerable<RendezVous>> GetRendezVous()
         {
             var commandText = "select r.rendezvousid,c.consultid,c.typeconsult,p.patientid,p.lastname,d.dentisteid,d.lastname FROM rendezvous JOIN consultation c ON c.consultid = r.consultid JOIN patient p ON p.patientid = p.consultid JOIN dentiste d ON d.patientid = d.patientid order by r.daterendezvous";

@@ -32,6 +32,17 @@ namespace CabinetDentaire.BLL.Services
             }
         }
 
+        public async Task DeletePatient(Guid id)
+        {
+            var commandText = "delete from patient where patientid = @PatientID";
+            var parameters = new DynamicParameters();
+            parameters.Add("PatientID", id, DbType.Guid);
+            using (var connection = _dbContext.Connection())
+            {
+                await connection.QueryFirstOrDefaultAsync<Patient>(commandText, parameters);
+            }
+        }
+
         public async Task<IEnumerable<Patient>> GetAllPatients()
         {
             var commandText = "select * from patient";
@@ -49,6 +60,21 @@ namespace CabinetDentaire.BLL.Services
             using (var connection = _dbContext.Connection())
             {
                 return (await connection.QueryFirstOrDefaultAsync<Patient>(commandText, parameters));
+            }
+        }
+        public async Task UpdatePatient(Patient patient, Guid id)
+        {
+            var commandText = "update patient set firstname = @FirstName, lastname = @LastName,age = @Age, adresse = @Adresse ,telephone = @Telephone where patientid = @PatientID";
+            var parameters = new DynamicParameters();
+            parameters.Add("FirstName",patient.FirstName,DbType.String);
+            parameters.Add("LastName",patient.LastName,DbType.String);
+            parameters.Add("Age",patient.Age,DbType.Int32);
+            parameters.Add("Adresse", patient.Adresse, DbType.String);
+            parameters.Add("Telephone",patient.Telephone, DbType.String);
+            parameters.Add("PatientID",id, DbType.Guid);
+            using (var connection = _dbContext.Connection())
+            {
+                await connection.ExecuteAsync(commandText, parameters);
             }
         }
     }

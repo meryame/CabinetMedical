@@ -16,31 +16,48 @@ namespace CabinetDentaire.BLL.Services
         {
             _dbContext = dbContext;
         }
-
         public async Task AddDentiste(Dentiste dentiste)
         {
             var commandText = "INSERT INTO dentiste(lastname,firstname,adresse,starttime,endtime,speciality) VALUES (@LastName, @FirstName, @Adresse, @StartTime, @EndTime, @Speciality)";
             var parameters = new DynamicParameters();
-            parameters.Add("lastname",dentiste.LastName,DbType.String);
+            parameters.Add("lastname", dentiste.LastName, DbType.String);
             parameters.Add("firstname", dentiste.FirstName, DbType.String);
             parameters.Add("adresse", dentiste.Adresse, DbType.String);
             parameters.Add("StartTime", dentiste.StartTime, DbType.Time);
             parameters.Add("EndTime", dentiste.EndTime, DbType.Time);
             parameters.Add("speciality", dentiste.Speciality, DbType.String);
 
-            using(var connection = _dbContext.Connection())
+            using (var connection = _dbContext.Connection())
             {
                 await connection.ExecuteAsync(commandText, parameters);
             }
-
         }
-
+        public async Task DeleteDentiste(Guid id)
+        {
+            var commandText = "delete from dentiste where dentisteid = @DentisteID";
+            var parameters = new DynamicParameters();
+            parameters.Add("DentisteID", id, DbType.Guid);
+            using(var connection = _dbContext.Connection())
+            {
+                await connection.QueryFirstOrDefaultAsync<Dentiste>(commandText, parameters);
+            }
+        }
         public async Task<IEnumerable<Dentiste>> GetAllDentiste()
         {
             var commandText = "select * from dentiste";
             using(var connection = _dbContext.Connection())
             {
                 return (await connection.QueryAsync<Dentiste>(commandText)).ToList();
+            }
+        }
+        public async Task<Dentiste> GetDentisteById(Guid id)
+        {
+            var commandText = "select * from dentiste where dentisteid = @DentisteID";
+            var parameters = new DynamicParameters();
+            parameters.Add("DentisteID", id, DbType.Guid);
+            using(var connection = _dbContext.Connection())
+            {
+                return (await connection.QueryFirstOrDefaultAsync<Dentiste>(commandText,parameters));
             }
         }
         public async Task UpdateCH(Dentiste dentiste, Guid id)

@@ -90,8 +90,20 @@ namespace CabinetDentaire.API.Controllers
 
         // DELETE api/<RendezVousController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            try
+            {
+                if(id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _rendezVousService.DeleteRendezVous(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

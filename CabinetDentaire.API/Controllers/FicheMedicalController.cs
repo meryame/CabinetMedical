@@ -17,16 +17,36 @@ namespace CabinetDentaire.API.Controllers
         }
         // GET: api/<FicheMedicalController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var ficheMedical = await _ficheMedicalService.GetAllFichesMedicals();
+                return Ok(ficheMedical);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         // GET api/<FicheMedicalController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            try
+            {
+                if(id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _ficheMedicalService.GetFicheMedical(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         // POST api/<FicheMedicalController>
@@ -49,14 +69,38 @@ namespace CabinetDentaire.API.Controllers
 
         // PUT api/<FicheMedicalController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(FicheMedical ficheMedical , Guid id)
         {
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _ficheMedicalService.UpdateFicheMedical(ficheMedical, id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         // DELETE api/<FicheMedicalController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            try
+            {
+                if(id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _ficheMedicalService.DeleteFicheMedical(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
