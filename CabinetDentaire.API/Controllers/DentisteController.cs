@@ -34,9 +34,20 @@ namespace CabinetDentaire.API.Controllers
 
         // GET api/<DentisteController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            try
+            {
+                if(id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _dentisteService.GetDentisteById(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
         // POST api/<DentisteController>
@@ -80,8 +91,21 @@ namespace CabinetDentaire.API.Controllers
 
         // DELETE api/<DentisteController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest();
+                await _dentisteService.DeleteDentiste(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
         }
     }
 }

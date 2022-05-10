@@ -29,7 +29,50 @@ namespace CabinetDentaire.BLL.Services
             {
                 await connection.ExecuteAsync(commandText, parameters);
             }
+        }
 
+        public async Task DeleteConsultation(Guid id)
+        {
+            var commandText = "delete from consultation where consultationid = @ConsultID";
+            var parameters = new DynamicParameters();
+            parameters.Add("ConsultID", id, DbType.Guid);
+            using (var connection = _dbContext.Connection())
+            {
+                await connection.QueryFirstOrDefaultAsync<Consultation>(commandText, parameters);
+            }
+        }
+
+        public async Task<IEnumerable<Consultation>> GetAllConsultations()
+        {
+            var commandText = "select * from consultation";
+            using (var connection = _dbContext.Connection())
+            {
+                return (await connection.QueryAsync<Consultation>(commandText)).ToList();
+            }
+        }
+
+        public async Task<Consultation> GetConsultation(Guid id)
+        {
+            var commandText = "select * from consultation where consultationid = @ConsultID";
+            var parameters = new DynamicParameters();
+            parameters.Add("ConsultID", id, DbType.Guid);
+            using (var connection = _dbContext.Connection())
+            {
+                return (await connection.QueryFirstOrDefaultAsync<Consultation>(commandText, parameters));
+            }
+        }
+
+        public async Task UpdateConsultation(Consultation consultation, Guid id)
+        {
+            var commandText = "update consultation set typeconsult = @Type, tarif = @Tarif where consultationid = @ConsultID";
+            var parameters = new DynamicParameters();
+            parameters.Add("Type", consultation.Type ,DbType.String);
+            parameters.Add("Tarif", consultation.Tarif, DbType.String);
+            parameters.Add("ConsultID", id, DbType.Guid);
+            using (var connection = _dbContext.Connection())
+            {
+                await connection.ExecuteAsync(commandText, parameters);
+            }
         }
     }
 }

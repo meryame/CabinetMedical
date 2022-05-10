@@ -17,16 +17,34 @@ namespace CabinetDentaire.API.Controllers
         }
         // GET: api/<ConsultationController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> GetAll()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                var consultations = await _consultationService.GetAllConsultations();
+                return Ok(consultations);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         // GET api/<ConsultationController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _consultationService.GetConsultation(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         // POST api/<ConsultationController>
@@ -49,14 +67,36 @@ namespace CabinetDentaire.API.Controllers
 
         // PUT api/<ConsultationController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put(Consultation consultation , Guid id)
         {
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _consultationService.UpdateConsultation(consultation, id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         // DELETE api/<ConsultationController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            try
+            {
+                if (id == Guid.Empty)
+                    return BadRequest("enter id");
+                await _consultationService.DeleteConsultation(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

@@ -13,5 +13,6 @@ namespace CabinetDentaire.BLL.Services
         public Task<IEnumerable<RendezVous>> GetRendezVous();
         public Task CancelRendezVous(Guid id,RendezVous rendezVous);
         public Task<RendezVous> GetRendezVous(Guid id);
+        public Task DeleteRendezVous(Guid id);
     }
 }

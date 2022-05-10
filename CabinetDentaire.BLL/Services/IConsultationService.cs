@@ -10,5 +10,9 @@ namespace CabinetDentaire.BLL.Services
     public interface IConsultationService
     {
         public Task AddConsutation(Consultation consultation);
+        public Task<IEnumerable<Consultation>> GetAllConsultations();
+        public Task<Consultation> GetConsultation(Guid id);
+        public Task DeleteConsultation(Guid id);
+        public Task UpdateConsultation(Consultation consultation, Guid id);
     }
 }

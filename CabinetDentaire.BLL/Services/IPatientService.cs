@@ -12,5 +12,7 @@ namespace CabinetDentaire.BLL.Services
         public Task AddPatient(Patient patient);
         public Task<IEnumerable<Patient>> GetAllPatients();
         public Task<Patient> GetPatient(Guid id);
+        public Task DeletePatient(Guid id);
+        public Task UpdatePatient(Patient patient, Guid id);
     }
 }
