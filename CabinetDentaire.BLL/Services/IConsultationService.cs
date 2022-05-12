@@ -13,6 +13,6 @@ namespace CabinetDentaire.BLL.Services
         public Task<IEnumerable<Consultation>> GetAllConsultations();
         public Task<Consultation> GetConsultation(Guid id);
         public Task DeleteConsultation(Guid id);
-        public Task UpdateConsultation(Consultation consultation, Guid id);
+        public Task UpdateConsultation(Consultation consultation);
     }
 }

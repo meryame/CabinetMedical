@@ -62,13 +62,13 @@ namespace CabinetDentaire.BLL.Services
             }
         }
 
-        public async Task UpdateConsultation(Consultation consultation, Guid id)
+        public async Task UpdateConsultation(Consultation consultation)
         {
             var commandText = "update consultation set typeconsult = @Type, tarif = @Tarif where consultationid = @ConsultID";
             var parameters = new DynamicParameters();
             parameters.Add("Type", consultation.Type ,DbType.String);
             parameters.Add("Tarif", consultation.Tarif, DbType.String);
-            parameters.Add("ConsultID", id, DbType.Guid);
+            parameters.Add("ConsultID", consultation.ConsultID, DbType.Guid);
             using (var connection = _dbContext.Connection())
             {
                 await connection.ExecuteAsync(commandText, parameters);
