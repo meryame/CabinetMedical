@@ -13,6 +13,6 @@ namespace CabinetDentaire.BLL.Services
         public Task<IEnumerable<FicheMedical>> GetAllFichesMedicals();
         public Task<FicheMedical> GetFicheMedical(Guid id);
         public Task DeleteFicheMedical(Guid id);
-        public Task UpdateFicheMedical(FicheMedical ficheMedical, Guid id);
+        public Task UpdateFicheMedical(FicheMedical ficheMedical);
     }
 }

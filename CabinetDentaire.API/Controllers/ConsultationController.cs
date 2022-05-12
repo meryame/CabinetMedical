@@ -67,13 +67,13 @@ namespace CabinetDentaire.API.Controllers
 
         // PUT api/<ConsultationController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Consultation consultation , Guid id)
+        public async Task<IActionResult> Put(Consultation consultation)
         {
             try
             {
-                if (id == Guid.Empty)
+                if (consultation.ConsultID == Guid.Empty)
                     return BadRequest("enter id");
-                await _consultationService.UpdateConsultation(consultation, id);
+                await _consultationService.UpdateConsultation(consultation);
                 return Ok();
             }
             catch (Exception ex)

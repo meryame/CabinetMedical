@@ -61,12 +61,12 @@ namespace CabinetDentaire.BLL.Services
             }
         }
 
-        public async Task UpdateFicheMedical(FicheMedical ficheMedical, Guid id)
+        public async Task UpdateFicheMedical(FicheMedical ficheMedical)
         {
             var commandText = "update fichemedical set traitement = @Traitement where fichemedicalid = @FicheMedicalID";
             var parameters = new DynamicParameters();
             parameters.Add("Traitement", ficheMedical.Traitement, DbType.String);
-            parameters.Add("FicheMedicalID", id, DbType.Guid);
+            parameters.Add("FicheMedicalID", ficheMedical.FicheMedicalID, DbType.Guid);
             using (var connection = _dbContext.Connection())
             {
                 await connection.ExecuteAsync(commandText, parameters);

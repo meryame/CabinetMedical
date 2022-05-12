@@ -55,8 +55,7 @@ namespace CabinetDentaire.API.Controllers
         {
             try
             {
-                if (ficheMedical == null)
-                    return BadRequest("enter information");
+                ficheMedical.FicheMedicalID = Guid.NewGuid();
                 await _ficheMedicalService.AddFicheMedical(ficheMedical);
                 return Ok();
             }
@@ -69,13 +68,13 @@ namespace CabinetDentaire.API.Controllers
 
         // PUT api/<FicheMedicalController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(FicheMedical ficheMedical , Guid id)
+        public async Task<IActionResult> Put(FicheMedical ficheMedical)
         {
             try
             {
-                if (id == Guid.Empty)
+                if (ficheMedical.FicheMedicalID == Guid.Empty)
                     return BadRequest("enter id");
-                await _ficheMedicalService.UpdateFicheMedical(ficheMedical, id);
+                await _ficheMedicalService.UpdateFicheMedical(ficheMedical);
                 return Ok();
             }
             catch (Exception ex)
